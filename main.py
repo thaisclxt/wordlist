@@ -3,7 +3,7 @@ from random import randrange
 
 # thais
 def getAlpha(keyWord):
-    value = randrange(2)
+    value = randrange(3)
 
     if keyWord.isalpha() and not keyWord.isupper():
         if value == 0:
@@ -27,13 +27,13 @@ def getUpper(keyWord):
 
 # 2022
 def getNumber(keyWord):
-    value = randrange(1)
+    value = randrange(2)
 
     if keyWord.isdigit():
         if value == 0:
             return keyWord
 
-        elif value == 2:
+        elif value == 1:
             return keyWord[len(keyWord) // 2:]
 
     return ''
@@ -42,7 +42,7 @@ def getNumber(keyWord):
 # Segurança e Auditoria de Sistemas / Ciência da Computação
 def getTitle(keyWord):
     newWord = []
-    value = randrange(2)
+    value = randrange(3)
 
     if " " in keyWord:
         for word in keyWord.split(" "):
@@ -87,6 +87,7 @@ def main():
     keyWords = getKeyWords()
 
     for _ in range(int(input("Quantas palavras você deseja gerar? "))):
+        value = randrange(3)
         newWord = []
 
         # Para cada palavra em `keyWord` será gerada uma correspondente
@@ -95,6 +96,15 @@ def main():
             newWord.append(getUpper(keyword))
             newWord.append(getNumber(keyword))
             newWord.append(getTitle(keyword))
+
+        if value == 0:
+            pass
+
+        elif value == 1:
+            newWord.reverse()
+
+        elif value == 2:
+            newWord.sort()
 
         wordList.append("".join(newWord))
 
