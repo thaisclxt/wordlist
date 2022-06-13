@@ -1,4 +1,21 @@
+from random import randrange
 import string
+
+
+# Retorna um número
+def getNumber(word):
+    number = []
+
+    # Verifica se tem algum número em `word` e se tiver, o adiciona a lista
+    for digit in string.digits:
+        if digit in word:
+            number.append(digit)
+
+    # Adiciona um número aleatório se não tiver número na lista
+    if not number:
+        number.append(str(randrange(10)))
+
+    return "".join(number)
 
 
 # Lê cada linha do arquivo `wordList.txt` e as retorna
@@ -18,9 +35,10 @@ def getNewWord(keyWord):
     # Verifica se `keyWord` é uma frase
     if " " in keyWord:
         for word in keyWord.split(" "):
-            pass
+            newWord.append(getNumber(word))
     else:
         for character in keyWord:
+            newWord.append(getNumber(character))
             pass
 
     return "".join(newWord)
@@ -42,10 +60,13 @@ def main():
     keyWords = getKeyWords()
 
     for _ in range(int(input("Quantas palavras você deseja gerar? "))):
+        newWord = []
 
         # Para cada palavra em `keyWord` será gerada uma correspondente
         for word in keyWords:
-            wordList.append(getNewWord(word))
+            newWord.append(getNewWord(word))
+
+        wordList.append("".join(newWord))
 
     exportWordList(wordList)
 
