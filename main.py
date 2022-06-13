@@ -1,7 +1,7 @@
 from random import randrange
 
 
-# thais
+# Exemplo: thais
 def getAlpha(keyWord):
     value = randrange(3)
 
@@ -18,14 +18,14 @@ def getAlpha(keyWord):
     return ''
 
 
-# UFT
+# Exemplo: UFT
 def getUpper(keyWord):
     if keyWord.isupper():
         return keyWord
     return ''
 
 
-# 2022
+# Exemplo: 2022
 def getNumber(keyWord):
     value = randrange(2)
 
@@ -39,7 +39,7 @@ def getNumber(keyWord):
     return ''
 
 
-# Segurança e Auditoria de Sistemas / Ciência da Computação
+# Exemplo: Segurança e Auditoria de Sistemas / Ciência da Computação
 def getTitle(keyWord):
     newWord = []
     value = randrange(3)
@@ -96,6 +96,11 @@ def main():
             newWord.append(getUpper(keyword))
             newWord.append(getNumber(keyword))
             newWord.append(getTitle(keyword))
+
+        # Verifica se o tamanho X da palavra é menor que 8, se for acrescenta 9 - X números
+        if len(newWord) < 8:
+            for _ in range(9 - len(newWord)):
+                newWord.append(str(randrange(10)))
 
         if value == 0:
             pass
