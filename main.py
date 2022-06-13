@@ -2,22 +2,6 @@ from random import randrange
 import string
 
 
-# Retorna um número
-def getNumber(word):
-    number = []
-
-    # Verifica se tem algum número em `word` e se tiver, o adiciona a lista
-    for digit in string.digits:
-        if digit in word:
-            number.append(digit)
-
-    # Adiciona um número aleatório se não tiver número na lista
-    if not number:
-        number.append(str(randrange(10)))
-
-    return "".join(number)
-
-
 # Lê cada linha do arquivo `wordList.txt` e as retorna
 def getKeyWords():
     file = open("keyWords.txt", "r")
@@ -26,22 +10,6 @@ def getKeyWords():
     file.close
 
     return keyWords
-
-
-# Gera uma nova palavra a partir de `word`
-def getNewWord(keyWord):
-    newWord = []
-
-    # Verifica se `keyWord` é uma frase
-    if " " in keyWord:
-        for word in keyWord.split(" "):
-            newWord.append(getNumber(word))
-    else:
-        for character in keyWord:
-            newWord.append(getNumber(character))
-            pass
-
-    return "".join(newWord)
 
 
 # Acessa ou cria um arquivo chamado `wordList.txt`, se já não existir, e escreve as palavras geradas
@@ -63,8 +31,25 @@ def main():
         newWord = []
 
         # Para cada palavra em `keyWord` será gerada uma correspondente
-        for word in keyWords:
-            newWord.append(getNewWord(word))
+        for keyword in keyWords:
+
+            # UFT
+            if keyword.isupper():
+                newWord.append(keyword)
+
+            # thais
+            elif keyword.isalpha():
+                newWord.append(keyword)
+
+            # 2022
+            if keyword.isdigit():
+                newWord.append(keyword)
+
+            # Segurança e Auditoria de Sistemas / Ciência da Computação
+            if " " in keyword:
+                for word in keyword.split(" "):
+                    if word.istitle():
+                        newWord.append(word[0])
 
         wordList.append("".join(newWord))
 
